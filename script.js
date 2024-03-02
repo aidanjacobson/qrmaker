@@ -8,9 +8,13 @@ window.onload = function() {
 }
 
 async function doTag() {
-    var tag = (await getText("Enter tag name")).replace(/ /g, "").toLowerCase();
-    console.log(tag);
-    var url = `https://www.home-assistant.io/tag/${tag}`;
+    var tag = (await getText("Enter tag name or type url")).replace(/ /g, "").toLowerCase();
+    var url;
+    if (tag == "url") {
+        url = await getText("Enter Url", "https://aidanjacobson.github.io/qrmaker");
+    } else {
+        url = `https://www.home-assistant.io/tag/${tag}`;
+    }
     var qrURL = `https://api.qrserver.com/v1/create-qr-code/?size=${qr_size}x${qr_size}&data=${encodeURIComponent(url)}`;
     qrdisplay.width = qrdisplay.height = main.style.width = qr_size;
     qrdisplay.src = qrURL;
