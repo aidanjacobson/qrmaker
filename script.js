@@ -8,7 +8,8 @@ window.onload = function() {
 }
 
 async function doTag() {
-    var tag = await getText("Enter tag name");
+    var tag = (await getText("Enter tag name")).replace(/ /g, "").toLowerCase();
+    console.log(tag);
     var url = `https://www.home-assistant.io/tag/${tag}`;
     var qrURL = `https://api.qrserver.com/v1/create-qr-code/?size=${qr_size}x${qr_size}&data=${encodeURIComponent(url)}`;
     qrdisplay.width = qrdisplay.height = main.style.width = qr_size;
