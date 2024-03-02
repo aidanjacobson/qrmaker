@@ -31,10 +31,7 @@ function getText(question="", defaultValue="") {
         textInput.select();
     }
     return new Promise(function(resolve) {
-        textInput.onkeypress = function(event) {
-            if (event.code != "Enter") return;
-            textInputDiv.hide();
-            display.show();
+        submitBtn.onclick = function() {
             resolve(textInput.value);
         }
     });
