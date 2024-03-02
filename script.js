@@ -8,7 +8,8 @@ window.onload = function() {
 }
 
 async function doTag() {
-    var tag = (await getText("Enter tag name or type url")).replace(/ /g, "").toLowerCase();
+    var inText = await getText("Enter tag name or type url");
+    var tag = inText.replace(/ /g, "").toLowerCase();
     var url;
     if (tag == "url") {
         url = await getText("Enter Url", "https://aidanjacobson.github.io/qrmaker");
@@ -18,7 +19,7 @@ async function doTag() {
     var qrURL = `https://api.qrserver.com/v1/create-qr-code/?size=${qr_size}x${qr_size}&data=${encodeURIComponent(url)}`;
     qrdisplay.width = qrdisplay.height = main.style.width = qr_size;
     qrdisplay.src = qrURL;
-    var displayName = await getText("Enter display name", tag);
+    var displayName = await getText("Enter display name", inText);
     nameDisplaySpan.innerText = displayName;
     const fontMultiplier = .2;
     nameDisplaySpan.style.fontSize = qr_size * fontMultiplier;
