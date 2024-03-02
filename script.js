@@ -19,6 +19,7 @@ async function doTag() {
     nameDisplaySpan.style.fontSize = qr_size * fontMultiplier;
 }
 
+var submitFunction = ()=>{};
 function getText(question="", defaultValue="") {
 
     display.hide();
@@ -31,9 +32,11 @@ function getText(question="", defaultValue="") {
         textInput.select();
     }
     return new Promise(function(resolve) {
-        submitBtn.onclick = function() {
+        submitFunction = function() {
+            textInputDiv.hide();
+            display.show();
             resolve(textInput.value);
-        }
+        };
     });
 }
 
